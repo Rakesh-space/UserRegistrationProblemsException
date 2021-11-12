@@ -7,7 +7,7 @@ namespace TestProject1
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestFirstName()
         {
             //AAA Methodology
 
@@ -19,6 +19,29 @@ namespace TestProject1
             {
                 //Act
                 UserException testing = new UserException(message);      
+                string actual = testing.validFirstName();
+            }
+            catch (CustomException ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
+
+        [TestMethod]
+        public void TestLastName()
+        {
+            //AAA Methodology
+
+            //Arrange
+            string message = null;
+            string expected = "invalid";
+
+            try
+            {
+                //Act
+                UserException testing = new UserException(message);
                 string actual = testing.validFirstName();
             }
             catch (CustomException ex)
