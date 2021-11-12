@@ -51,5 +51,28 @@ namespace TestProject1
             }
 
         }
+
+        [TestMethod]
+        public void TestValidGmail()
+        {
+            //AAA Methodology
+
+            //Arrange
+            string message = null;
+            string expected = "invalid";
+
+            try
+            {
+                //Act
+                UserException testing = new UserException(message);
+                string actual = testing.ValidEmailId();
+            }
+            catch (CustomException ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
     }
 }

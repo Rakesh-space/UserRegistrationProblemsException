@@ -41,14 +41,14 @@ namespace UserRegistrationProblemsException
         }
 
         //We are using this method to match pattern of last name
-        public string validLastName(string name)
+        public string validLastName()
         {
             string lastname = "^[A-Z]{1}[a-zA-Z]{2}$";      //Expression for first letter is capital and maximum charactor is 3
             Regex regex = new Regex(lastname);
 
             try
             {
-                if (regex.IsMatch(name))
+                if (regex.IsMatch(message))
                 {
                     //Console.WriteLine(name + "-->Valid");
                     return "Valid";
@@ -60,6 +60,31 @@ namespace UserRegistrationProblemsException
                 }
             }
             catch (ArgumentNullException ex)
+            {
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
+            }
+        }
+
+        //This method for validation of email id
+        public string ValidEmailId()
+        {
+            string emailid = "^[a-z]{3}[.][a-z0-9]*[@]{1}[bl]{2}[.]{1}[co]{2}[.]{1}[a-z]*$"; //Expression for gmail format
+            Regex regex = new Regex(emailid);
+
+            try
+            {
+                if (regex.IsMatch(message))
+                {
+                    //Console.WriteLine(mail + "-- > Valid");
+                    return "Valid";
+                }
+                else
+                {
+                    //Console.WriteLine(mail + "-- > InValid");
+                    return "Invalid";
+                }
+            }
+            catch(ArgumentNullException ex)
             {
                 throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
             }
