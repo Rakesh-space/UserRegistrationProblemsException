@@ -165,6 +165,30 @@ namespace UserRegistrationProblemsException
                 throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
             }
         }
+        //We are using this method to match pattern of One Numeric Password format
+        public string OneNumeric()
+        {
+            string pwd = "^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$";  //Expression for Validating One Numeric Password format
+            Regex regex = new Regex(pwd);
+
+            try
+            {
+                if (regex.IsMatch(message))
+                {
+                    // Console.WriteLine(pass + "-- > Valid");
+                    return "Valid";
+                }
+                else
+                {
+                    // Console.WriteLine(pass + "-- > InValid");
+                    return "Invalid";
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
+            }
+        }
     }
 }
 
