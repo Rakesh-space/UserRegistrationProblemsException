@@ -87,7 +87,7 @@ namespace TestProject1
             {
                 //Act
                 UserException testing = new UserException(message);
-                string actual = testing.validFirstName();
+                string actual = testing.mobileFormat();
             }
             catch(CustomException ex)
             {
@@ -105,12 +105,17 @@ namespace TestProject1
             string message = null;
             string expected = "valid";
 
-            //Act
-            UserException testing = new UserException(message);
-            string actual = testing.validFirstName();
-
-            //Assert
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                //Act
+                UserException testing = new UserException(message);
+                string actual = testing.passwordFormat();
+            }
+            catch (CustomException ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
 
         }
     }
