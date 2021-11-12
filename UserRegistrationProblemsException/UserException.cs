@@ -41,14 +41,14 @@ namespace UserRegistrationProblemsException
         }
 
         //We are using this method to match pattern of last name
-        public string validLastName(string name)
+        public string validLastName()
         {
             string lastname = "^[A-Z]{1}[a-zA-Z]{2}$";      //Expression for first letter is capital and maximum charactor is 3
             Regex regex = new Regex(lastname);
 
             try
             {
-                if (regex.IsMatch(name))
+                if (regex.IsMatch(message))
                 {
                     //Console.WriteLine(name + "-->Valid");
                     return "Valid";
