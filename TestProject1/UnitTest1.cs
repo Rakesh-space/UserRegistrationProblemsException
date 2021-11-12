@@ -161,5 +161,29 @@ namespace TestProject1
             }
 
         }
+
+        [TestMethod]
+        public void TestSpecialCharcter()
+        {
+            //AAA Methodology
+
+            //Arrange
+            string message = null;
+            string expected = "valid";
+
+
+            try
+            {
+                //Act
+                UserException testing = new UserException(message);
+                string actual = testing.SpecialCharcter();
+            }
+            catch (CustomException ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
     }
 }

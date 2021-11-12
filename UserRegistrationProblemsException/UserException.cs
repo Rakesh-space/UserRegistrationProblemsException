@@ -189,6 +189,32 @@ namespace UserRegistrationProblemsException
                 throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
+
+
+        //We are using this method to match pattern of Special Charcter Password format
+        public string SpecialCharcter()
+        {
+            string pwd = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{10,}$"; //Expression for Validating Special Character Password format
+            Regex regex = new Regex(pwd);
+
+            try
+            {
+                if (regex.IsMatch(message))
+                {
+                    //Console.WriteLine(pass + "-- > Valid");
+                    return "Valid";
+                }
+                else
+                {
+                    //Console.WriteLine(pass + "-- > InValid");
+                    return "Invalid";
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
+            }
+        }
     }
 }
 
