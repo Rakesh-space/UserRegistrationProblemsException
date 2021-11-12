@@ -42,7 +42,7 @@ namespace TestProject1
             {
                 //Act
                 UserException testing = new UserException(message);
-                string actual = testing.validFirstName();
+                string actual = testing.validLastName();
             }
             catch (CustomException ex)
             {
@@ -87,7 +87,7 @@ namespace TestProject1
             {
                 //Act
                 UserException testing = new UserException(message);
-                string actual = testing.validFirstName();
+                string actual = testing.mobileFormat();
             }
             catch(CustomException ex)
             {

@@ -92,20 +92,22 @@ namespace UserRegistrationProblemsException
 
 
         //We are using this method to match pattern of mobile no
-        public static void mobileFormat(string number)
+        public string mobileFormat()
         {
             string Mobnumber = "^[0-9]{1,2}[ ]{1}[0-9]{10}$";  //Expression for Validating mobileFormating
             Regex regex = new Regex(Mobnumber);
 
             try
             {
-                if (regex.IsMatch(number))
+                if (regex.IsMatch(message))
                 {
-                    Console.WriteLine(number + "-- > Valid");
+                    //Console.WriteLine(number + "-- > Valid");
+                    return "Valid";
                 }
                 else
                 {
-                    Console.WriteLine(number + "-- > InValid");
+                    //Console.WriteLine(number + "-- > InValid");
+                    return "Invalid";
                 }
             }
             catch(ArgumentNullException ex)
