@@ -7,7 +7,7 @@ namespace TestProject1
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestFirstName()
         {
             //AAA Methodology
 
@@ -18,7 +18,7 @@ namespace TestProject1
             try
             {
                 //Act
-                UserException testing = new UserException(message);      
+                UserException testing = new UserException(message);
                 string actual = testing.validFirstName();
             }
             catch (CustomException ex)
