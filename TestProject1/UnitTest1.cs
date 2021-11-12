@@ -95,5 +95,23 @@ namespace TestProject1
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+
+        [TestMethod]
+        public void TestPassword()
+        {
+            //AAA Methodology
+
+            //Arrange
+            string message = null;
+            string expected = "valid";
+
+            //Act
+            UserException testing = new UserException(message);
+            string actual = testing.validFirstName();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+
+        }
     }
 }

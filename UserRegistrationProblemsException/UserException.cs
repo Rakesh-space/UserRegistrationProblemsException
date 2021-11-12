@@ -33,7 +33,7 @@ namespace UserRegistrationProblemsException
                     return "Invalid";
                 }
             }
-            catch (ArgumentNullException )
+            catch (ArgumentNullException ex)
             {
                 throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
                // Console.WriteLine(ex);
@@ -111,6 +111,30 @@ namespace UserRegistrationProblemsException
             catch(ArgumentNullException ex)
             { 
                 
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
+            }
+        }
+
+
+        //We are using this method to match pattern of password format
+        public static string passwordFormat(string pass)
+        {
+            string pwd = "^[a-zA-Z0-9]{8,}$";
+            Regex regex = new Regex(pwd);        //creating a regex named obj with regular pwd.
+
+            try
+            {
+                if (regex.IsMatch(pass))
+                {
+                    //Console.WriteLine(pass + "-- > Valid");
+                    return "Valid";
+                }
+                else
+                    // Console.WriteLine(pass + "-- > InValid");
+                    return "Valid";
+            }
+            catch (ArgumentNullException ex)
+            {
                 throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
             }
         }
