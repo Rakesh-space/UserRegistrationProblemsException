@@ -92,20 +92,22 @@ namespace UserRegistrationProblemsException
 
 
         //We are using this method to match pattern of mobile no
-        public static void mobileFormat(string number)
+        public string mobileFormat()
         {
             string Mobnumber = "^[0-9]{1,2}[ ]{1}[0-9]{10}$";  //Expression for Validating mobileFormating
             Regex regex = new Regex(Mobnumber);
 
             try
             {
-                if (regex.IsMatch(number))
+                if (regex.IsMatch(message))
                 {
-                    Console.WriteLine(number + "-- > Valid");
+                    //Console.WriteLine(number + "-- > Valid");
+                    return "Valid";
                 }
                 else
                 {
-                    Console.WriteLine(number + "-- > InValid");
+                    //Console.WriteLine(number + "-- > InValid");
+                    return "InValid";
                 }
             }
             catch(ArgumentNullException ex)
@@ -117,14 +119,14 @@ namespace UserRegistrationProblemsException
 
 
         //We are using this method to match pattern of password format
-        public static string passwordFormat(string pass)
+        public string passwordFormat()
         {
             string pwd = "^[a-zA-Z0-9]{8,}$";
             Regex regex = new Regex(pwd);        //creating a regex named obj with regular pwd.
 
             try
             {
-                if (regex.IsMatch(pass))
+                if (regex.IsMatch(message))
                 {
                     //Console.WriteLine(pass + "-- > Valid");
                     return "Valid";
@@ -132,6 +134,31 @@ namespace UserRegistrationProblemsException
                 else
                     // Console.WriteLine(pass + "-- > InValid");
                     return "Valid";
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
+            }
+        }
+
+        //We are using this method to match pattern of Upper Case Password format
+        public string UpperCaseFormat()
+        {
+            string pwd = "^(?=.*[A-Z])[a-zA-Z0-9]{8,}$"; //creating a regex named obj with regular pwd.
+            Regex regex = new Regex(pwd);
+
+            try
+            {
+                if (regex.IsMatch(message))
+                {
+                    //Console.WriteLine(pass + "-- > Valid");
+                    return "Valid";
+                }
+                else
+                {
+                    //Console.WriteLine(pass + "-- > InValid");
+                    return "Invalid";
+                }
             }
             catch (ArgumentNullException ex)
             {

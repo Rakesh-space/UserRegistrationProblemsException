@@ -42,7 +42,7 @@ namespace TestProject1
             {
                 //Act
                 UserException testing = new UserException(message);
-                string actual = testing.validFirstName();
+                string actual = testing.validLastName();
             }
             catch (CustomException ex)
             {
@@ -87,7 +87,7 @@ namespace TestProject1
             {
                 //Act
                 UserException testing = new UserException(message);
-                string actual = testing.validFirstName();
+                string actual = testing.mobileFormat();
             }
             catch(CustomException ex)
             {
@@ -105,13 +105,38 @@ namespace TestProject1
             string message = null;
             string expected = "valid";
 
-            //Act
-            UserException testing = new UserException(message);
-            string actual = testing.validFirstName();
+            try
+            {
+                //Act
+                UserException testing = new UserException(message);
+                string actual = testing.passwordFormat();
+            }
+            catch (CustomException ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
 
-            //Assert
-            Assert.AreEqual(expected, actual);
+        [TestMethod]
+        public void TestUpperCase()
+        {
+            //AAA Methodology
+            //Arrange
+            string message = null;
+            string expected = "valid";
 
+            try
+            {
+                //Act
+                UserException testing = new UserException(message);
+                string actual = testing.UpperCaseFormat();
+            }
+            catch (CustomException ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
         }
     }
 }
