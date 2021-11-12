@@ -185,5 +185,27 @@ namespace TestProject1
             }
 
         }
+
+        [TestMethod]
+        public void TestAllGmailFormat()
+        {
+            //AAA Methodology
+
+            //Arrange
+            string message = null;
+            string expected = "valid";
+            try
+            {
+                //Act
+                UserException testing = new UserException(message);
+                string actual = testing.EmailArr();
+            }
+            catch (CustomException ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
     }
 }

@@ -215,6 +215,36 @@ namespace UserRegistrationProblemsException
                 throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
+
+        //We are using this method to match differnt pattern of Email format
+        public string EmailArr()
+        {
+            string email = "^[a-zA-Z0-9]+[+-._]{0,1}[a-zA-Z0-9]*[+-._]?[a-zA-Z0-9]*[@][a-zA-Z0-9]+[.][a-zA-Z0-9]{2,3}([.]?[a-zA-Z]{2,3}){0,1}$";
+            //+ means one or more.
+            //*- zero or more.
+            //?- zero or 1 
+
+            Regex regex = new Regex(email);      //Expression for Validating regular exp email different format.
+
+            try
+            {          
+                    if (regex.IsMatch(message))
+                    {
+                        //Console.WriteLine(word + " is valid.");
+                        return "Valid";
+                    }
+                    else
+                    {
+                        //Console.WriteLine(word + " is invalid.");
+                         return "InValid";
+                    }
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "invalid");
+                //Console.WriteLine(ex);
+            }
+        }
     }
 }
 
