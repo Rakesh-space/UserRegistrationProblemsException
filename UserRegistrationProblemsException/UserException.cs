@@ -18,88 +18,121 @@ namespace UserRegistrationProblemsException
         //We are using this method to match pattern of first name
         public string validFirstName()
         {
+
             string firstname = "^[A-Z]{1}[a-zA-Z]{2}$";  //Expression for first letter is capital and maximum charactor is 3
-            Regex regex = new Regex(firstname);
+            // Regex regex = new Regex(firstname);
+            // validate fist name using lambda function
+            bool testFirstName(string firstName) => (Regex.IsMatch(firstName, firstname));
+            bool result = testFirstName(message);
             try
             {
-                if (regex.IsMatch(message))
+                //this is the custom exception that we declared for checking empty messages. exception type is an enum followed by the message.
+                if (this.message.Equals(string.Empty))
                 {
-                    // Console.WriteLine(message + "-->Valid");
+                    throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Mood should not be Empty");
+                }
+
+                if (result)
+                {
+                    //Console.WriteLine(Name + "-->Valid");
                     return "Valid";
                 }
                 else
                 {
-                    //Console.WriteLine(message + "--->Invalid");
+                    // Console.WriteLine(Name + "--->Invalid");
                     return "Invalid";
                 }
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
-                throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
-               // Console.WriteLine(ex);
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
 
-        //We are using this method to match pattern of last name
+        // Uc2 Regular Exprection use the exception
         public string validLastName()
         {
-            string lastname = "^[A-Z]{1}[a-zA-Z]{2}$";      //Expression for first letter is capital and maximum charactor is 3
-            Regex regex = new Regex(lastname);
 
+            string Lastname = "^[A-Z]{1}[a-zA-Z]{2}$";  //Expression for first letter is capital and maximum charactor is 3
+                                                        // Regex regex = new Regex(Lastname);
+            bool testLastName(string larstName) => (Regex.IsMatch(larstName, Lastname));
+            bool result = testLastName(message);
             try
             {
-                if (regex.IsMatch(message))
+                //this is the custom exception that we declared for checking empty messages. exception type is an enum followed by the message.
+                if (this.message.Equals(string.Empty))
                 {
-                    //Console.WriteLine(name + "-->Valid");
+                    throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Mood should not be Empty");
+                }
+
+                if (result)
+                {
+                    //Console.WriteLine(Name + "-->Valid");
                     return "Valid";
                 }
                 else
                 {
-                    // Console.WriteLine(name + "--->Invalid");
+                    // Console.WriteLine(Name + "--->Invalid");
                     return "Invalid";
                 }
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
-                throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
 
-        //This method for validation of email id
-        public string ValidEmailId()
+        // Uc Regular Exprection use the exception to the valid mail
+        public string validMail()
         {
-            string emailid = "^[a-z]{3}[.][a-z0-9]*[@]{1}[bl]{2}[.]{1}[co]{2}[.]{1}[a-z]*$"; //Expression for gmail format
-            Regex regex = new Regex(emailid);
+            string emailPattern = "^[a-z]{3}[.][a-z]*[@]{1}[bl]{2}[.]{1}[co]{2}[.]{1}[a-z]*$"; // RegEx Expression for gmail 
+                                                                                               //Regex regex = new Regex(emailPattern);
+                                                                                               //using lamda function
+            bool testEmailId(string emailId) => (Regex.IsMatch(emailId, emailPattern));
+            bool result = testEmailId(message);
 
             try
             {
-                if (regex.IsMatch(message))
+                //this is the custom exception that we declared for checking empty messages. exception type is an enum followed by the message.
+                if (this.message.Equals(string.Empty))
                 {
-                    //Console.WriteLine(mail + "-- > Valid");
+                    throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Mood should not be Empty");
+                }
+
+                if (result)
+                {
+                    //Console.WriteLine(Name + "-->Valid");
                     return "Valid";
                 }
                 else
                 {
-                    //Console.WriteLine(mail + "-- > InValid");
+                    // Console.WriteLine(Name + "--->Invalid");
                     return "Invalid";
                 }
             }
-            catch(ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
-                throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
 
-
-        //We are using this method to match pattern of mobile no
-        public string mobileFormat()
+        //Uc4 Regex use the Exception
+        public string MobileNo()
         {
             string Mobnumber = "^[0-9]{1,2}[ ]{1}[0-9]{10}$";  //Expression for Validating mobileFormating
-            Regex regex = new Regex(Mobnumber);
-
+                                                               // Regex regex = new Regex(Mobnumber);
+                                                               //mobile number valaidation using lamda function
+            bool testmobilenumber(string Mobile) => (Regex.IsMatch(Mobile, Mobnumber));
+            bool result = testmobilenumber(message);
             try
             {
-                if (regex.IsMatch(message))
+                //this is the custom exception that we declared for checking empty messages. exception type is an enum followed by the message.
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Mood should not be Empty");
+                }
+
+                if (result)
                 {
                     //Console.WriteLine(number + "-- > Valid");
                     return "Valid";
@@ -107,144 +140,173 @@ namespace UserRegistrationProblemsException
                 else
                 {
                     //Console.WriteLine(number + "-- > InValid");
+                    return "Invalid";
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
+            }
+
+        }
+        //Uc5 Regex use the Exception
+        public string Validpassword1()
+        {
+            string Password = "^[a-z]{8}$";    // Regex exp for smallest 8 letter  password 
+                                               // Regex regex = new Regex(Password);        //creating a regex named obj with regular pwd.
+
+            // using  lamda function
+            bool testpassword1(string Pass) => (Regex.IsMatch(Pass, Password));
+            bool result = testpassword1(message);
+
+            try
+            {
+                //this is the custom exception that we declared for checking empty messages. exception type is an enum followed by the message.
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Mood should not be Empty");
+                }
+                if (result)
+                {
+                    //Console.WriteLine(pass + "-- > Valid");
+                    return "Valid";
+                }
+                else
+                    // Console.WriteLine(pass + "-- > InValid");
                     return "InValid";
-                }
             }
-            catch(ArgumentNullException ex)
-            { 
-                
-                throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
+
+            catch (ArgumentNullException)
+            {
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
 
-
-        //We are using this method to match pattern of password format
-        public string passwordFormat()
+        // UC6 Password RegEx should have at least one Alphabet char in the password using exception
+        public string Validpassword2()
         {
-            string pwd = "^[a-zA-Z0-9]{8,}$";
-            Regex regex = new Regex(pwd);        //creating a regex named obj with regular pwd.
-
+            string Password = "^(?=.*[A-Z])[a-zA-Z]{8}$";    // Regex exp for  8 letter in should have at least one Uppercase  password 
+            //Regex regex = new Regex(Password);        //creating a regex named obj with regular pwd.
+            //using lamda function 
+            bool testpassword2(string Pass2) => (Regex.IsMatch(Pass2, Password));
+            bool result = testpassword2(message);
             try
             {
-                if (regex.IsMatch(message))
+                //this is the custom exception that we declared for checking empty messages. exception type is an enum followed by the message.
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Mood should not be Empty");
+                }
+                if (result)
                 {
                     //Console.WriteLine(pass + "-- > Valid");
                     return "Valid";
                 }
                 else
                     // Console.WriteLine(pass + "-- > InValid");
-                    return "Valid";
+                    return "InValid";
             }
-            catch (ArgumentNullException ex)
+
+            catch (ArgumentNullException)
             {
-                throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
-
-        //We are using this method to match pattern of Upper Case Password format
-        public string UpperCaseFormat()
+        // UC7 Password RegEx should have at least one numaric number in the password
+        public string Validpassword3()
         {
-            string pwd = "^(?=.*[A-Z])[a-zA-Z0-9]{8,}$"; //creating a regex named obj with regular pwd.
-            Regex regex = new Regex(pwd);
+            string Password = "^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9]{8}$";    // Regex exp for  8 letter in should have at least one Uppercase  password 
+                                                                           // Regex regex = new Regex(Password);        //creating a regex named obj with regular pwd.
 
+            //using Lamda Function
+            bool Password3(string Pass3) => (Regex.IsMatch(Pass3, Password));
+            bool result = Password3(message);
             try
             {
-                if (regex.IsMatch(message))
+                //this is the custom exception that we declared for checking empty messages. exception type is an enum followed by the message.
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Mood should not be Empty");
+                }
+                if (result)
                 {
                     //Console.WriteLine(pass + "-- > Valid");
                     return "Valid";
                 }
                 else
-                {
-                    //Console.WriteLine(pass + "-- > InValid");
-                    return "Invalid";
-                }
-            }
-            catch (ArgumentNullException ex)
-            {
-                throw new CustomException(CustomException.ExceptionType.ArgumentNullException,"Invalid");
-            }
-        }
-        //We are using this method to match pattern of One Numeric Password format
-        public string OneNumeric()
-        {
-            string pwd = "^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$";  //Expression for Validating One Numeric Password format
-            Regex regex = new Regex(pwd);
-
-            try
-            {
-                if (regex.IsMatch(message))
-                {
-                    // Console.WriteLine(pass + "-- > Valid");
-                    return "Valid";
-                }
-                else
-                {
                     // Console.WriteLine(pass + "-- > InValid");
-                    return "Invalid";
-                }
+                    return "InValid";
             }
-            catch (ArgumentNullException ex)
+
+            catch (ArgumentNullException)
             {
                 throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
 
-
-        //We are using this method to match pattern of Special Charcter Password format
-        public string SpecialCharcter()
+        // UC8 compleate Password RegEx should have at least one numaric number & Capital Alphabet& Speciaal char in the password
+        public string Validpassword4()
         {
-            string pwd = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{10,}$"; //Expression for Validating Special Character Password format
-            Regex regex = new Regex(pwd);
+            // Regex exp  should have at least one Uppercase,number,special char password 
+            string Password = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8}$";    // Regex exp for  8 letter in should have at least one Uppercase  password 
+                                                                                                   // Regex regex = new Regex(Password);        //creating a regex named obj with regular pwd.
 
+            //using Lamdafunction
+            bool TestPassword4(string Pass4) => (Regex.IsMatch(Pass4, Password));
+            bool result = TestPassword4(message);
             try
             {
-                if (regex.IsMatch(message))
+                //this is the custom exception that we declared for checking empty messages. exception type is an enum followed by the message.
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Mood should not be Empty");
+                }
+                if (result)
                 {
                     //Console.WriteLine(pass + "-- > Valid");
                     return "Valid";
                 }
                 else
-                {
-                    //Console.WriteLine(pass + "-- > InValid");
-                    return "Invalid";
-                }
+                    // Console.WriteLine(pass + "-- > InValid");
+                    return "InValid";
             }
-            catch (ArgumentNullException ex)
+
+            catch (ArgumentNullException)
             {
                 throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
 
-        //We are using this method to match differnt pattern of Email format
-        public string EmailArr()
+        // UC8 compleate Password RegEx should have at least one numaric number & Capital Alphabet& Speciaal char in the password
+        public string VlidMailFormat()
         {
-            string email = "^[a-zA-Z0-9]+[+-._]{0,1}[a-zA-Z0-9]*[+-._]?[a-zA-Z0-9]*[@][a-zA-Z0-9]+[.][a-zA-Z0-9]{2,3}([.]?[a-zA-Z]{2,3}){0,1}$";
-            //+ means one or more.
-            //*- zero or more.
-            //?- zero or 1 
 
-            Regex regex = new Regex(email);      //Expression for Validating regular exp email different format.
+            string GEmailPattern = "^[a-zA-Z0-9]+[+-._]{0,1}[a-zA-Z0-9]*[+-._]?[a-zA-Z0-9]*[@][a-zA-Z0-9]+[.][a-zA-Z0-9]{2,3}([.]?[a-zA-Z]{2,3}){0,1}$";
+            // Regex regex = new Regex(GEmail);        //creating a regex named obj with regular pwd.
 
+            bool testGmail(string Gmail) => (Regex.IsMatch(Gmail, GEmailPattern));
+            bool result = testGmail(message);
             try
-            {          
-                    if (regex.IsMatch(message))
-                    {
-                        //Console.WriteLine(word + " is valid.");
-                        return "Valid";
-                    }
-                    else
-                    {
-                        //Console.WriteLine(word + " is invalid.");
-                         return "InValid";
-                    }
-            }
-            catch (ArgumentNullException ex)
             {
-                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "invalid");
-                //Console.WriteLine(ex);
+                //this is the custom exception that we declared for checking empty messages. exception type is an enum followed by the message.
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Mood should not be Empty");
+                }
+                if (result)
+                {
+                    //Console.WriteLine(pass + "-- > Valid");
+                    return "Valid";
+                }
+                else
+                    // Console.WriteLine(pass + "-- > InValid");
+                    return "InValid";
+            }
+
+            catch (ArgumentNullException)
+            {
+                throw new CustomException(CustomException.ExceptionType.ArgumentNullException, "Invalid");
             }
         }
     }
 }
-
